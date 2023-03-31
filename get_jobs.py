@@ -20,18 +20,12 @@ url = url + 'api/json?tree=jobs[name,jobs[name,url]]&pretty=true'
 response = requests.get(url, auth=auth)
 python_obj = response.json()
 
-#Declarando as listas utilizadas (se necessário)
-#repos = []
-#branches_nomes = []
-#branches_urls = []
+#Declarando o mapeamento
 mapa = []
 
 # Realizando o loop de mapeamento
 for x in range(len(python_obj['jobs'])):
-    #repos.append(python_obj['jobs'][x]['name'])
     for y in range(len(python_obj['jobs'][x]['jobs'])):
-        #branches_nomes.append(python_obj['jobs'][x]['jobs'][y]['name'])
-        #branches_urls.append(python_obj['jobs'][x]['jobs'][y]['url'])
         mapa.append([[python_obj['jobs'][x]['name']],python_obj['jobs'][x]['jobs'][y]['name'],python_obj['jobs'][x]['jobs'][y]['url']])
 
 # Configurando e ajustando o DataFrame
